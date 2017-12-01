@@ -44,6 +44,7 @@
 		minSizeY: 1, // minumum row height of an item
 		maxSizeY: null, // maximum row height of an item
 		saveGridItemCalculatedHeightInMobile: false, // grid item height in mobile display. true- to use the calculated height by sizeY given
+		gridResizable: false,
 		resizable: { // options to pass to resizable handler
 			enabled: true,
 			handles: ['s', 'e', 'n', 'w', 'se', 'ne', 'sw', 'nw']
@@ -683,7 +684,11 @@
 						};
 
 						function updateHeight() {
-							$elem.css('height', (gridster.gridHeight * gridster.curRowHeight) + (gridster.outerMargin ? gridster.margins[0] : -gridster.margins[0]) + 'px');
+							if (gridster.gridResizable)
+							{
+								$elem.css('height', (gridster.gridHeight * gridster.curRowHeight) +
+									(gridster.outerMargin ? gridster.margins[0] : -gridster.margins[0]) + 'px');
+							}
 						}
 
 						scope.$watch(function() {

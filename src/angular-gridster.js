@@ -44,7 +44,7 @@
 			minSizeY: 1, // minumum row height of an item
 			maxSizeY: null, // maximum row height of an item
 			saveGridItemCalculatedHeightInMobile: false, // grid item height in mobile display. true- to use the calculated height by sizeY given
-			gridResizable: false,
+			gridResizable: false, //allow resize page
 			resizable: { // options to pass to resizable handler
 				enabled: true,
 				handles: ['s', 'e', 'n', 'w', 'se', 'ne', 'sw', 'nw']
@@ -574,9 +574,6 @@
 								maxHeight = Math.max(maxHeight, rowIndex + plus + columns[colIndex].sizeY);
 							}
 						}
-					}
-					if (this.movingItem && (maxHeight >= this.maxRows + this.movingItem.sizeY) && this.draggable.moveOut) {
-						this.draggable.moveOut(this.movingItem);
 					}
 					this.gridHeight = this.maxRows - (this.gridResizable ?
 						maxHeight > 0 ? Math.min(this.maxRows, maxHeight) : Math.max(this.maxRows, maxHeight) : 0);

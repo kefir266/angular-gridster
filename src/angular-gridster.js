@@ -1775,7 +1775,17 @@
 
 
 						var canOccupy = row > -1 && col > -1 && sizeX + col <= gridster.columns && sizeY + row <= gridster.maxRows;
-						if (canOccupy && (gridster.pushing !== false || gridster.getItems(row, col, sizeX, sizeY, item).length === 0)) {
+						var canResize = (!gridster.minSizeY || sizeY >= gridster.minSizeY) &&
+							(!gridster.minSizeY || sizeX >= gridster.minSizeY) &&
+							(!gridster.maxSizeY || sizeY <= gridster.maxSizeY) &&
+							(!gridster.maxSizeX || sizeX <= gridster.maxSizeX);
+						if (!canResize) {
+							sizeX = item.X;
+							sizeY = item.Y;
+						}
+						if (canOccupy &&
+							canResize &&
+							(gridster.pushing !== false || gridster.getItems(row, col, sizeX, sizeY, item).length === 0)) {
 							item.row = row;
 							item.col = col;
 							item.sizeX = sizeX;
@@ -1783,7 +1793,7 @@
 						}
 						var isChanged = item.row !== oldRow || item.col !== oldCol || item.sizeX !== oldSizeX || item.sizeY !== oldSizeY;
 
-						if (hasCallback || isChanged) {
+						if (hasCallback || isChanged || !canResize) {
 							scope.$apply(function() {
 								if (hasCallback) {
 									gridster.resizable.resize(e, $el, itemOptions, item); // options is the item model
@@ -2242,6 +2252,6 @@
 			};
 		})
 
-	;
+		;
 
 }));

@@ -880,6 +880,8 @@
 				this.gridster = gridster;
 				this.sizeX = gridster.defaultSizeX;
 				this.sizeY = gridster.defaultSizeY;
+				this.minSizeX = gridster.minSizeX;
+				this.minSizeY = gridster.minSizeY;
 			};
 
 			this.destroy = function() {

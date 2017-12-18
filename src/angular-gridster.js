@@ -2249,8 +2249,5 @@
 					$element.addClass('gridster-no-drag');
 				}
 			};
-		})
-
-		;
-
+		});
 }));
